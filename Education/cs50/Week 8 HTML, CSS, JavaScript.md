@@ -190,5 +190,18 @@ Frameworks
 		Very popular and widely used framework
 		[getbootstrap.com](https://getbootstrap.com/) documentation
 Javascript
-	
-		
+	What can it do?
+		conditionals
+			pretty much exactly like C, except elif is 'else if'
+		variables
+			looks like 'let counter = 0;'
+		incrementing
+			counter += 1;, counter++;
+		loops
+			for (let i = 0; i < 3; i++)
+			while (true)
+	Where do we use JavaScript in HTML?
+		\<script> tags, which you can put js code inside
+		\<script src="scripts.js">\</script>
+	Events
+		click, drag, focus, keyup, mousedown, etc etc
