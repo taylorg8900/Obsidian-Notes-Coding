@@ -152,17 +152,43 @@ CSS
 		\<header>
 		\<main>
 		\<footer>
-	ok lets actually apply certain properties to certain tags
+	Selection by type
 		selecting by type example
 			body {
 				text-align: center;
 			}
+		second example
+			a {
+				color: red;
+				text-decoration: none;
+			}
+		third example
+			a:hover {
+				text-decoration: underline;
+			}
 		#important you can see different css properties if you go to inspect in the page and go to the right (after beingin the elements tab) and click styles and mess with the css code inside the browsers memory, for instance deleting 'center' in the example above will give you a drop down with a ton of different also valid options for which to text-align
-	classes
+	Selection by class
 		keywords we can create and associate our own properties with
 		example of creating a class
 			.centered {
 				text-align: center;
 			}
 			\<header class="centered">
-	jkljlkjlkj
+	Selection by ID
+		creating a unique identifier that lets you target it with CSS
+		example
+			\#harvard {
+				color: \#FF0000;
+			}
+			\#yale {
+				color: \#0000FF;
+			}
+			Visit \<a href="https://www.harvard.edu/" id="harvard">Harvard\</a>
+Frameworks
+	a library written by someone else to make it easier to structure your project so you don't have to implement basics that other people would have already dealt with before
+	#term Bootstrap
+		Very popular and widely used framework
+		[getbootstrap.com](https://getbootstrap.com/) documentation
+Javascript
+	
+		
