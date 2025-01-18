@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Education/cs50/Week 8 HTML, CSS, JavaScript.md",
+                "file": "misc/experience.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Week 8 HTML, CSS, JavaScript"
+              "title": "experience"
             }
           }
         ],
@@ -193,8 +193,11 @@
   },
   "active": "6e1bb6f09678779d",
   "lastOpenFiles": [
-    "Education/cs50/example.md",
     "Education/cs50/Week 8 HTML, CSS, JavaScript.md",
+    "misc/experience.md",
+    "misc",
+    "Education/Untitled",
+    "Education/cs50/example.md",
     "Obsidian-Notes-Coding",
     "Education/cs50/Week 7 SQL.md",
     "tavern project/Tags.md",
@@ -223,7 +226,6 @@
     "tavern project/what to do tomorrow/for 2024.12.19.md",
     "tavern project/what to do tomorrow/for 2024.12.17.md",
     "tavern project/what to do tomorrow/for 2024.12.18.md",
-    "tavern project/procedural generation/storing with json files/2024.12.17 test.md",
     "tavern project/Daily",
     "tavern project/images/Screenshot (31).png",
     "tavern project/images/dead cells room tiles example.png",
@@ -233,8 +235,6 @@
     "tavern project/procedural generation/graph theory",
     "tavern project/images/Untitled.canvas",
     "tavern project/what to do tomorrow",
-    "tavern project/procedural generation/storing with json files/Untitled.canvas",
-    "tavern project/custom resources",
-    "tavern project/images"
+    "tavern project/procedural generation/storing with json files/Untitled.canvas"
   ]
 }
