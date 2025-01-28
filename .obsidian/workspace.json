@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "misc/experience.md",
+                "file": "minecraft modding/Setup.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "experience"
+              "title": "Setup"
             }
           }
         ],
@@ -193,8 +193,10 @@
   },
   "active": "6e1bb6f09678779d",
   "lastOpenFiles": [
-    "Education/cs50/Week 8 HTML, CSS, JavaScript.md",
     "misc/experience.md",
+    "minecraft modding/Setup.md",
+    "minecraft modding",
+    "Education/cs50/Week 8 HTML, CSS, JavaScript.md",
     "misc",
     "Education/Untitled",
     "Education/cs50/example.md",
@@ -225,7 +227,6 @@
     "tavern project/what to do tomorrow/for 2024.12.20.md",
     "tavern project/what to do tomorrow/for 2024.12.19.md",
     "tavern project/what to do tomorrow/for 2024.12.17.md",
-    "tavern project/what to do tomorrow/for 2024.12.18.md",
     "tavern project/Daily",
     "tavern project/images/Screenshot (31).png",
     "tavern project/images/dead cells room tiles example.png",
@@ -234,7 +235,6 @@
     "Pasted image 20241217001249.png",
     "tavern project/procedural generation/graph theory",
     "tavern project/images/Untitled.canvas",
-    "tavern project/what to do tomorrow",
     "tavern project/procedural generation/storing with json files/Untitled.canvas"
   ]
 }
