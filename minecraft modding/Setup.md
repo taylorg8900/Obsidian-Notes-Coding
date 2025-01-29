@@ -128,5 +128,42 @@ summary
 # [Custom Blocks #3](https://www.youtube.com/watch?v=Y2w0PgvABVU&list=PLKGarocXCE1GspJBXQEGuhazihZCSSLmK&index=3)
 significantly more confusing/difficult than adding Custom Items
 
+create new 'block' package, just like the 'item' package
+create new 'ModBlocks' class in the 'block' package
+	things to hit autocomplete/tab on:
+	- DeferredRegister
+	- Block ( #important make sure to choose the net.minecraft.world.level.block.Block import statement)
+	- ForgeRegistries
+	- FirstMod
 
-	
+	public class ModBlocks {
+		public static final DeferredRegister<Block> BLOCKS = 
+			DeferredRegister.create(ForgeRegistries.BLOCKS, FirstMod.MOD_ID);
+		}
+		
+also need a register method
+	autocomplete:
+	- IEventBus
+
+	public static void register(IEventBus eventBus) {
+		BLOCKS.register(eventBus);
+	}
+
+call ModBlocks.register(modEventBus); in our FirstMod class
+
+we also need to register a block item which is associated with that block (what is displayed in inventory)
+helper methods
+	autocomplete:
+	- RegistryObject
+	- BlockItem
+	- Supplier
+
+	// will register our block item, that is associated with our block that we registered
+	private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
+		ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties)}
+
+	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
+		RegistryObject<T> toReturn = BLOCKS.register(name, block);
+		registerBlockItem(name, toReturn);
+		return toReturn;
+	}
