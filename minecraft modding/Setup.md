@@ -1,7 +1,7 @@
 https://moddingtutorials.org/1.19.2/environment-setup
 ^ this actually not very useful as it turns out, decided to do the most up to date tutorial i could find instead
 
-[Getting Started #1](https://www.youtube.com/watch?v=eFofdJ1BYYs&list=PLKGarocXCE1GspJBXQEGuhazihZCSSLmK)
+# [Getting Started #1](https://www.youtube.com/watch?v=eFofdJ1BYYs&list=PLKGarocXCE1GspJBXQEGuhazihZCSSLmK)
  - download intellij, JDK, blah blah blah
  - download mdk from forge, did 1.21 version
  - change packet structure name from com.example.examplemod to "net.sockarockee.firstmod"
@@ -35,7 +35,7 @@ https://moddingtutorials.org/1.19.2/environment-setup
 	 - will start minecraft up
  - setup github repository
 
-[Custom Items #2](https://www.youtube.com/watch?v=G1ZGToiB9_U&list=PLKGarocXCE1GspJBXQEGuhazihZCSSLmK&index=2)
+# [Custom Items #2](https://www.youtube.com/watch?v=G1ZGToiB9_U&list=PLKGarocXCE1GspJBXQEGuhazihZCSSLmK&index =2)
 item package
 	right click on our firstmod package, and add another package named "item"
 	
@@ -125,6 +125,8 @@ summary
 	add a translation
 	add the json file which points to our texture
 
-[Custom Blocks #3](https://www.youtube.com/watch?v=Y2w0PgvABVU&list=PLKGarocXCE1GspJBXQEGuhazihZCSSLmK&index=3)
+# [Custom Blocks #3](https://www.youtube.com/watch?v=Y2w0PgvABVU&list=PLKGarocXCE1GspJBXQEGuhazihZCSSLmK&index=3)
+significantly more confusing/difficult than adding Custom Items
+
 
 	
