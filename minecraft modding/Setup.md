@@ -167,3 +167,9 @@ helper methods
 		registerBlockItem(name, toReturn);
 		return toReturn;
 	}
+
+register our block
+
+	public static final RegistryObject<Block> ALEXANDRITE_BLOCK = registerBlock("alexandrite_block",
+		() -> new Block(BlockBehaviour.Properties.of()
+			.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
