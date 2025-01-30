@@ -198,18 +198,122 @@ add our block to the creative mode tab, in FirstMod class, underneath where we h
 	}
 
 ### adding assets
----
 folders we need to add
 - add 'blockstates' folder to resources/assets/sockarockeemod folder
 - add 'block' folder to resources/assets/sockarockeemod/models folder
 - add 'block' folder to resources/assets/sockarockeemod/textures folder
 
-in resources/assets/sockarockeemod/blockstates
+1) in resources/assets/sockarockeemod/blockstates
 - add 'alexandrite_block.json'
 	- has to match the name that we have for the block in our 'registerBlock' statement in ModBlocks class
-- structure of json file looks like the following
+- for setting a block down inside the world
+- points us to which model to display, when the block gets placed down
+```
+{
+	"variants": {
+		"": {
+			"model": "sockarockeemod:block/alexandrite_block"
+		}
+	}
+}
+```
 
+2) in resources/assets/sockarockeemod/models/block
+- add 'alexandrite_block.json'
+- looks very similar to the item json file
+- this is how minecraft knows what to display when the block exists in the world
+```
+{
+	"parent": "minecraft:block/cube_all",
+	"textures": {
+		"all": "sockarockeemod:block/alexandrite_block"
+	}
+}
+```
+3) in resources/assets/sockarockeemod/textures/block, add the png files for our blocks provided by KaupenJoe
 
-stopped at 8:36
+block currently would not have a texture inside of the inventory, or a name, so we also need an item model json file
 
+4) in resources/assets/sockarockeemod/models/item
+- add 'alexandrite_block.json'
+- basically refers back to the block model json file from step 2
+```
+{
+	"parent": "sockarockeemod:block/alexandrite_block"
+}
+```
 
+still need a translation
+
+5) in resources/sockarockeemod/lang, add this line under the other ones: `"block.sockarockeemod.alexandrite_block": "Block of Alexandrite"`
+
+# [Custom Creative Mode Tab #4](https://www.youtube.com/watch?v=WoX__Wulx3o&list=PLKGarocXCE1GspJBXQEGuhazihZCSSLmK&index=4)
+
+KaupenJoe likes to create all of the following inside of the 'item' package,  because it has to do with items in the first place and so you 'don't need a separate class'  
+Inside src/main/java/net/sockarockee/firstmod/item, create java class `ModCreativeModeTabs`  
+
+ModCreativeModeTabs class
+1) need a deferred register 'public static final'
+	autocomplete the following:
+	- DeferredRegister -> import net.minecraftforge.registries.DeferredRegister;
+	- CreativeModeTab -> import net.minecraft.world.item.CreativeModeTab;
+	- Registries.CREATIVE_MODE_TAB -> import net.minecraft.core.registries.Registries;
+	- FirstMod.MOD_ID -> import net.sockarockee.firstmod.FirstMod;
+```
+public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = 
+	DeferredRegister.create(Registries.CREATIVE_MODE_TAB, FirstMod.MOD_ID);
+```
+2) need a register method to use this with
+	autocomplete the following:
+	- IEventBus -> import net.minecraftforge.eventbus.api.IEventBus;
+```
+public static void register(IEventBus eventBus) {
+	CREATIVE_MODE_TABS.register(eventBus);
+}
+```
+3) now we call this in our FirstMod class, just like with the items and blocks
+```
+ModCreativeModeTabs.register(modEventBus);
+```
+4) now we actually get to adding the creative mode tab
+	- can pretty easily modify this to make new creative mode tabs, that have different icons and items inside
+	- autocomplete the following:
+		- RegistryObject ->                import net.minecraftforge.registries.RegistryObject;
+		- CreativeModTab ->              ~~already got imported~~
+		- CreativeModeTab.builder() ->  ~~already imported~~
+		- ItemStack ->                        import net.minecraft.world.item.ItemStack;
+		- Component.translatable -> import net.minecraft.network.chat.Component;
+		- 
+```
+public static final RegistryObject<CreativeModTab> ALEXANDRITE_ITEMS_TAB = 
+	CREATIVE_MODE_TABS.register("alexandrite_items_tab",
+	() -> CreativeModeTab.builder()
+		.icon(() -> new ItemStack(ModItems.ALEXANDRITE.get()))
+		.title(Component.translatable("creativetab.sockarockeemod.alexandrite_items")) 
+		.displayItems(itemDisplayParamters, output) -> {
+			output.accept(ModItems.ALEXANDRITE.get());
+			output.accept(ModItems.RAW_ALEXANDRITE.get())
+		})
+		.build());
+```
+5) if we make more creative mode tabs, we need to order them properly
+	- do this by adding in `withTabsBefore()` method into our code block:
+```
+public static final RegistryObject<CreativeModTab> ALEXANDRITE_BLOCKS_TAB = 
+	CREATIVE_MODE_TABS.register("alexandrite_blocks_tab",
+	() -> CreativeModeTab.builder()
+		.icon(() -> new ItemStack(ModItems.ALEXANDRITE.get()))
+		.withTabsBefore(ALEXANDRITE_ITEMS_TAB.getID())
+		.title(Component.translatable("creativetab.sockarockeemod.alexandrite_blocks")) 
+		.displayItems(itemDisplayParamters, output) -> {
+			output.accept(ModBlocks.ALEXANDRITE_BLOCK.get());
+			output.accept(ModBlocks.RAW_ALEXANDRITE_BLOCK.get())
+		})
+		.build());
+```
+6) we need a name in the lang folder, and the key needs to match what is in the .title() method above
+```
+"creativetab.sockarockeemod.alexandrite_blocks": "Alexandrite Blocks"
+```
+
+any additional tabs that dont fit, will be added to additional pages at the top of the creative mode inventory like usual
