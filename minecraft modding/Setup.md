@@ -137,6 +137,7 @@ create new 'ModBlocks' class in the 'block' package
 	- FirstMod
 
 	public class ModBlocks {
+		// a way to register our blocks by using a deferred register
 		public static final DeferredRegister<Block> BLOCKS = 
 			DeferredRegister.create(ForgeRegistries.BLOCKS, FirstMod.MOD_ID);
 		}
@@ -153,15 +154,25 @@ call ModBlocks.register(modEventBus); in our FirstMod class
 
 we also need to register a block item which is associated with that block (what is displayed in inventory)
 helper methods
+[[Functional Interfaces]]
 	autocomplete:
 	- RegistryObject
 	- BlockItem
 	- Supplier
 
-	// will register our block item, that is associated with our block that we registered
+	// will register our block item, which is associated with our block
+	// is called in the method directly under this one
+	//
 	private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
 		ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties)}
 
+	// used with the variable declaration below to let us use the block and assign properties to it
+	// 'Supplier<T> block' parameter is a special type of functional interface from java.util.function
+	// it returns an instance of T when called
+	// here is an example of using this in a regular java class
+	// Supplier<String> stringSupplier = () -> "hello world";
+	// System.out.println(stringSupplier.get()); // outputs: hello world
+	//
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
 		RegistryObject<T> toReturn = BLOCKS.register(name, block);
 		registerBlockItem(name, toReturn);
@@ -169,7 +180,11 @@ helper methods
 	}
 
 register our block
-
+	
+	// this is *variable declaration* and not a method, hence no curly braces after ALEXANDRITE_BLOCK
+	// 'static' = belongs to the class, not instances
+	// 'public static final' is never a method, always for variable declarations and constants
+	//
 	public static final RegistryObject<Block> ALEXANDRITE_BLOCK = registerBlock("alexandrite_block",
 		() -> new Block(BlockBehaviour.Properties.of()
 			.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
