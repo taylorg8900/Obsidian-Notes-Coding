@@ -128,6 +128,8 @@ summary
 # [Custom Blocks #3](https://www.youtube.com/watch?v=Y2w0PgvABVU&list=PLKGarocXCE1GspJBXQEGuhazihZCSSLmK&index=3)
 significantly more confusing/difficult than adding Custom Items
 
+### registering our blocks
+---
 create new 'block' package, just like the 'item' package
 create new 'ModBlocks' class in the 'block' package
 	things to hit autocomplete/tab on:
@@ -154,7 +156,7 @@ call ModBlocks.register(modEventBus); in our FirstMod class
 
 we also need to register a block item which is associated with that block (what is displayed in inventory)
 helper methods
-[[Functional Interfaces]]
+[[Lambda Expressions]]
 	autocomplete:
 	- RegistryObject
 	- BlockItem
@@ -188,3 +190,26 @@ register our block
 	public static final RegistryObject<Block> ALEXANDRITE_BLOCK = registerBlock("alexandrite_block",
 		() -> new Block(BlockBehaviour.Properties.of()
 			.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
+
+add our block to the creative mode tab, in FirstMod class, underneath where we have our INGREDIANTS tab logic
+
+	if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+		event.accept(ModBlocks.ALEXANDRITE_BLOCK)
+	}
+
+### adding assets
+---
+folders we need to add
+- add 'blockstates' folder to resources/assets/sockarockeemod folder
+- add 'block' folder to resources/assets/sockarockeemod/models folder
+- add 'block' folder to resources/assets/sockarockeemod/textures folder
+
+in resources/assets/sockarockeemod/blockstates
+- add 'alexandrite_block.json'
+	- has to match the name that we have for the block in our 'registerBlock' statement in ModBlocks class
+- structure of json file looks like the following
+
+
+stopped at 8:36
+
+
