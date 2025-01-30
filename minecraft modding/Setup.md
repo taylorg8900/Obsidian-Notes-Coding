@@ -317,3 +317,12 @@ public static final RegistryObject<CreativeModTab> ALEXANDRITE_BLOCKS_TAB =
 ```
 
 any additional tabs that dont fit, will be added to additional pages at the top of the creative mode inventory like usual
+
+# [Recipes and Loot Tables #5](https://www.youtube.com/watch?v=9wCQkJtwqUQ&list=PLKGarocXCE1GspJBXQEGuhazihZCSSLmK&index=5)
+
+start with recipes, then loot tables
+
+### Recipes
+these are governed by data packs, so in our `resources` directory we need to add `data` folder
+- add `sockarockeemod` folder to `resources/data`, or whatever the mod id is 
+- add `recipes` folder to `resources/data/sockarockeemod`
