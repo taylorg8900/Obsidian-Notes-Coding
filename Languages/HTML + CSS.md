@@ -16,7 +16,7 @@ A `Selector` selects the HTML element you want to style
 	- Psuedo-class selectors        (select elements based on a certain state)
 	- Pseudo-elements selectors (select and style a part of an element)
 	- Attribute selectors               (select elements based on an attribute or attribute value)
-- Simple Selectors
+- [Simple Selectors](https://www.w3schools.com/css/css_selectors.asp)
 	- element selector 
 		- example: `p {text-align: center; color: red;}`
 	- id selector 
@@ -50,6 +50,32 @@ A `Selector` selects the HTML element you want to style
 		- `p {display: none; background-color: yellow; padding: 20px;}`
 		- `div:hover p {display: block;}`
 		- `.master:hover {background-color: red;}`
-- pseudo elements
+- [pseudo elements](https://www.w3schools.com/css/css_pseudo_elements.asp)
 	- used to style specific parts of an element
 	- "can be used to : style the first letter or line of an element, insert content before or after an element, style the markers of list items, style the viewbox behind a dialog box"
+	- syntax: `selector::pseudo-element {property:value;}`
+	- ::first-line
+		- formats the first line of text
+		- example: `p::first-line {color: #ff0000; font-variant: small-caps;}`
+	- ::first-letter
+		- formats the first letter of text
+	- ::before
+		- inserts some content before the content of an element
+	- ::after
+		- inserts some content after the content of an element
+	- ::marker
+		- styles the markers of list items
+	- ::selection
+		- matches the portion of an element that is selected by a user (like with their mouse or shift + arrow keys)
+- [Attribute selectors](https://www.w3schools.com/css/css_attribute_selectors.asp)
+	- selects elements with a specified attribute
+	- example: `a[target] {background-color: yellow;}`
+		- *only* `<a>` elements with the attribute target will have their color changed, like `<a href="..." target="...">website link</a>`
+	- example: `a[target="_blank"] {background-color: yellow;}`
+		- only `<a>` elements that have the attribute target, **and** the "\_blank" value are selected
+
+How to add CSS
+1) External CSS
+2) Internal CSS
+3) Inline CSS
+
