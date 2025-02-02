@@ -266,13 +266,13 @@ public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
 2) need a register method to use this with
 	autocomplete the following:
 	- IEventBus -> import net.minecraftforge.eventbus.api.IEventBus;
-```
+```java
 public static void register(IEventBus eventBus) {
 	CREATIVE_MODE_TABS.register(eventBus);
 }
 ```
 3) now we call this in our FirstMod class, just like with the items and blocks
-```
+```java
 ModCreativeModeTabs.register(modEventBus);
 ```
 4) now we actually get to adding the creative mode tab
@@ -284,7 +284,7 @@ ModCreativeModeTabs.register(modEventBus);
 		- ItemStack ->                        import net.minecraft.world.item.ItemStack;
 		- Component.translatable -> import net.minecraft.network.chat.Component;
 		- 
-```
+```java
 public static final RegistryObject<CreativeModTab> ALEXANDRITE_ITEMS_TAB = 
 	CREATIVE_MODE_TABS.register("alexandrite_items_tab",
 	() -> CreativeModeTab.builder()
@@ -298,7 +298,7 @@ public static final RegistryObject<CreativeModTab> ALEXANDRITE_ITEMS_TAB =
 ```
 5) if we make more creative mode tabs, we need to order them properly
 	- do this by adding in `withTabsBefore()` method into our code block:
-```
+```java
 public static final RegistryObject<CreativeModTab> ALEXANDRITE_BLOCKS_TAB = 
 	CREATIVE_MODE_TABS.register("alexandrite_blocks_tab",
 	() -> CreativeModeTab.builder()
@@ -324,5 +324,51 @@ start with recipes, then loot tables
 
 ### Recipes
 these are governed by data packs, so in our `resources` directory we need to add `data` folder
+- add `data` folder to `resources` directory
 - add `sockarockeemod` folder to `resources/data`, or whatever the mod id is 
-- add `recipes` folder to `resources/data/sockarockeemod`
+- add `recipe` folder to `resources/data/sockarockeemod`
+- add `alexandrite_block.json` to `resources/data/sockarockeemod/recipe`
+```json
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"A": {
+			 "item": "sockarockeemod:alexandrite"
+		 }
+	 },
+	"pattern": [
+		"AAA",
+		"AAA",
+		"AAA"
+	],
+	"result": {
+		"count": 1,
+		"id": "sockarockeemod:alexandrite_block"
+	}
+}
+```
+
+Also, can literally check every recipe in the game to see how they work inside minecraft by going to External Libraries -> Gradle: net.minecraft:client:extra:1.21.1 -> data -> minecraft -> recipe -> whatever recipe you want
+
+### Loot Tables
+going to add ore blocks so that we have a better understanding of loot tables, because ore blocks drop exp + ore items
+
+original ALEXANDRITE_BLOCK code
+```java
+public static final RegistryObject<Block> ALEXANDRITE_BLOCK = registerBlock("alexandrite_block",
+	() -> new Block(BlockBehaviour.Properties.of()
+		.strngth(3f)
+		.requiresCorrectToolForDrops()
+		.sound(Soundtype.AMETHYST)));
+```
+new code, modified for alexandrite ore instead (and now drops experience)
+```java
+public static final RegistryObject<Block> ALEXANDRITE_ORE = registerBlock("alexandrite_ore",
+	() -> new DropExperienceBlock(UniformInt.of(2,4), BlockBehaviour.Properties.of()
+		.strngth(3f)
+		.requiresCorrectToolForDrops()));
+		
+```
+
+sidenote: add all of the json files, lang files, and add to the creative mode tabs as well 
