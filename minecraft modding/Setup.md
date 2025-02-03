@@ -366,9 +366,143 @@ new code, modified for alexandrite ore instead (and now drops experience)
 ```java
 public static final RegistryObject<Block> ALEXANDRITE_ORE = registerBlock("alexandrite_ore",
 	() -> new DropExperienceBlock(UniformInt.of(2,4), BlockBehaviour.Properties.of()
-		.strngth(3f)
+		.strength(3f)
 		.requiresCorrectToolForDrops()));
 		
 ```
 
 sidenote: add all of the json files, lang files, and add to the creative mode tabs as well 
+
+Defining Tools for our blocks
+- defining which tools can break our blocks also comes from a data folder
+- in `resources/data` add `minecraft` folder
+- in `resources/data/minecraft` add `tags` folder
+- in `resources/data/minecraft/tags` add `block` folder
+- in `resources/data/minecraft/tags/block` add `mineable` folder
+- in `resources/data/minecraft/tags/block/mineable` add `pickaxe.json`
+```json
+{
+	"replace": false,
+	"values": [
+		"sockarockeemod:alexandrite_block",
+		"sockarockeemod:raw_alexandrite_block",
+		"sockarockeemod:alexacndrite_ore",
+		"sockarockeemod:alexandrite_deepslate_ore"
+	]
+}
+```
+goals: make it so deepslate alexandrite ore has to be mined with diamond pick, and normal alexandrite ore to be mined with at least an iron pickaxe
+- in `resources/data/minecraft/tags/blocks` add `needs_diamond_tool.json`
+- in `resources/data/minecraft/tags/blocks` add `needs_iron_tool.json`
+
+example in `needs_iron_tool.json`
+```json
+{
+	"replace": false,
+	"values": [
+		"sockarockeemod:alexandrite_block",
+		"sockarockeemod:raw_alexandrite_block",
+	]
+}
+```
+
+actually adding the loot tables
+- in `resources/data/sockarockeemod` add `loot_table` folder, "extremely important this is spelled correctly"
+- in `resources/data/sockarockeemod/loot_table` add `blocks` folder
+- Kaupenjoe just copied already finished loot table json files, but i will still type out structure of them below
+
+example of a loot table where the block drops itself
+```json
+{
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"bonus_rolls": 0.0,
+			"conditions": [
+				{
+					"condition": "minecraft:survives_explosion"
+				}
+			],
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "sockarockeemod:alexandrite_block"
+				}
+			],
+			"rolls": 1.0
+		}
+	],
+	"random_sequence": "sockarockeemod:blocks/alexandrite_block"
+}
+```
+
+example of a loot table where the ore block drops a random amount of items, can be affected by both silk touch and fortune enchantments
+```json
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "predicates": {
+                      "minecraft:enchantments": [
+                        {
+                          "enchantments": "minecraft:silk_touch",
+                          "levels": {
+                            "min": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "name": "tutorialmod:alexandrite_deepslate_ore"
+            },
+            {
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "add": false,
+                  "count": {
+                    "type": "minecraft:uniform",
+                    "max": 5.0,
+                    "min": 2.0
+                  },
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:ore_drops",
+                  "function": "minecraft:apply_bonus"
+                },
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ],
+              "name": "tutorialmod:raw_alexandrite"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "tutorialmod:blocks/alexandrite_deepslate_ore"
+}
+```
+
+As you can see, this is significanly more complicated and impossible to remember so in the future there will be a section about generating these automatically via datagen
+
+resources for creating loot tables
+- [loot table generator](https://misode.github.io/loot-table/)
+- External libraries -> Gradle: net.minecraft:client:extra:1.21.1 -> data -> minecraft -> loot_table -> blocks -> now every single loot table from vanilla is available for you to see and check out, copy, learn from, whatever
