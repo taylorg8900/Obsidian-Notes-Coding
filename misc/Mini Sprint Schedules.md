@@ -12,6 +12,7 @@ What is a mini sprint?
 	- Create a minecraft Music Disk Mod, but don't worry about publishing it yet
 	- Get started learning VIM editor
 	- make bouncy music game in javascript as well
+	- try to write out graph algorithms in my own pseudocode to understand them
 - things i have to get done
 	- cs1410 assignment 4
 	- cs1410 exam 1 
