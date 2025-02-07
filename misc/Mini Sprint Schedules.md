@@ -11,6 +11,7 @@ What is a mini sprint?
 	- Begin creating my own website, for use with a resume
 	- Create a minecraft Music Disk Mod, but don't worry about publishing it yet
 	- Get started learning VIM editor
+	- make bouncy music game in javascript as well
 - things i have to get done
 	- cs1410 assignment 4
 	- cs1410 exam 1 
