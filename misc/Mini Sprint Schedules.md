@@ -17,3 +17,13 @@ What is a mini sprint?
 	- cs1410 assignment 4
 	- cs1410 exam 1 
 	- cs1440 project 2
+
+### 2025.02.09 to 2025.02.15
+---
+This might be a little out of left field but I want to try taking another stab at figuring out graph theory problems since psuedocode is the fucking GOAT. After finishing cs1440 project 2 where I had to write a lot of it, and actually semi-complicated programs ran on the first try since I wrote everything out in pseudocode, I feel like I could try to understand something really complicated again.
+
+Things to do in tavern-project-GODOT before getting to graph theory:
+- [x] get git working from command line
+- [ ] reorganize project
+- [ ] get rid of unecessary files
+- [ ] create txt docs for a software development plan sort of thing
