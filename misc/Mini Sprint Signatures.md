@@ -5,3 +5,6 @@
 | 2025.02.04 | cs1410 assn5 | 73 min     | finished the very confusingly written second half of the assignment, java.utils.Array.sort seems to use merge sort or something good to know about                     |
 |            | cs1440 proj2 | 115 min    | got phase 0 done, which is reading all of the requirements and basically understanding how the assignment is structured. The next thing is to start writing pseudocode |
 | 2025.02.07 | cs1440 proj2 | 44 min     | completed `cat`                                                                                                                                                        |
+| 2025.02.08 | cs1440 proj2 | 237 min    | completed most of the project, have cut and paste left                                                                                                                 |
+|            |              | 25 min     | got most of cut done                                                                                                                                                   |
+| 2025.02.09 | cs1440 proj2 | 139 min    | finished proj                                                                                                                                                          |
