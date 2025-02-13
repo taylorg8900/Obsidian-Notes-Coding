@@ -29,5 +29,55 @@ Software Development Plan sections in this class
 	1. note likely sources of headaches in the future, or areas in the documentation that are sloppy
 	2. pretty much try to patch up any remaining holes so if you have to come back and are lost you can defer here for common issues that might come up
 
-# thing
----
+sample md formatting for sdp
+```
+# 1 - Requirements Analysis
+
+# 2 - Design
+
+# 3 - Implementation
+
+# 4 - Testing and Debugging
+
+# 5 - Deployment
+
+# 6 - Maintenance
+```
+
+sample documentation for a function in python
+```python
+def add(x, y)
+	"""
+	Adds two numbers and returns the result.
+	
+	Parameters:
+	x (int or float): The first integer
+	y (int or float): The second integer
+	
+	Return Value:
+	int or float: Two integers added together.
+	"""
+	return a + b
+```
+
+sample documentation for a function in java, using javadoc 'docstrings'
+- always goes right before a class or function
+
+```java
+/**
+ * Adds two numbers and returns the sum.
+ * 
+ * @param a The first number.
+ * @param b The second number.
+ * @return The sum of a and b.
+ * 
+ */ 
+public int add(int a, int b) { return a + b; }
+```
+
+javadoc tags:
+- `@param` describes a method parameter
+- `@return` describes the return value of a method
+- `@throws` describes exceptions thrown by the method
+- `@author` describes the author of the class or method
+- `@version` specifies the version of the class
