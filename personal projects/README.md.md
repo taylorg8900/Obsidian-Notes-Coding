@@ -10,3 +10,4 @@ List of projects to get working on
 list of subjects to get introduced to, or learn more about
 - [ ] VIM
 - [ ] BASH scripting
+- [ ] opening programs from command line
