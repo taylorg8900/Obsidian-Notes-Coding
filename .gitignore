@@ -1,3 +1,4 @@
+# all obsidian json files
 *.json
 .obsidian/app.json
 .obsidian/appearance.json
