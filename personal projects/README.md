@@ -11,6 +11,7 @@ list of subjects to get introduced to, or learn more about
 - [ ] VIM
 - [ ] BASH scripting
 - [ ] opening programs from command line
+- [ ] VIM mode in applications like pycharm
 
 
 other things to do
