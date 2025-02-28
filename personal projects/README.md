@@ -11,3 +11,8 @@ list of subjects to get introduced to, or learn more about
 - [ ] VIM
 - [ ] BASH scripting
 - [ ] opening programs from command line
+- [ ] VIM mode in applications like pycharm
+
+
+other things to do
+- [ ] go through email from Erik Falor's office hours - VIM tutor + his talk about VIM + shell scripting
