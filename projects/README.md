@@ -17,3 +17,10 @@ list of subjects to get introduced to, or learn more about
 
 other things to do
 - [ ] go through email from Erik Falor's office hours - VIM tutor + his talk about VIM + shell scripting
+
+this weekend
+- [ ] get some work done for current project for cs1440
+- [ ] fix robosub website push that someone made
+- [ ] start working on ROS canvas stuff
+- [ ] do assignment 6 for cs1410
+- [ ] 
