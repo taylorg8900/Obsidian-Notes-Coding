@@ -22,5 +22,5 @@ this weekend
 - [ ] get some work done for current project for cs1440
 - [ ] fix robosub website push that someone made
 - [ ] start working on ROS canvas stuff
-- [ ] do assignment 6 for cs1410
+- [x] do assignment 6 for cs1410
 - [ ] 
