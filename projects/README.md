@@ -6,6 +6,7 @@ List of projects to get working on
 - [ ] work more on robosub website
 - [ ] create apex legends csv file appending program for appending rp values to a csv file, and also finding out the local time on the system to be added as well
 - [ ] go through the ROS course on canvas
+- [ ] using VIM binds in obsidian might be good, is available
 
 
 list of subjects to get introduced to, or learn more about
