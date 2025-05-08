@@ -116,3 +116,17 @@ Create a signal similar to setting up `@export`:
 1. At the top of the script, add `signal NAME`. 
 2. Later, you can emit the signal by saying `NAME.emit()` inside of a function
 
+# Custom Resources
+---
+[Introduction to Custom Resources in Godot](https://www.youtube.com/watch?v=s-BqbdY5dZM&t=156s)
+
+What is a custom resource?
+- A data container
+- Like a more powerful version of a json or csv file
+- We can hold any data or properties that we want 
+- Since it is built into Godot we can hold things like signals, functions
+
+Why use custom resources over inheritance?
+- You can expose complex configuration in the Inspector
+- It is easier to use for things like stats and just raw data
+- Focused on data reuse, while inheritance is for behavior reuse
