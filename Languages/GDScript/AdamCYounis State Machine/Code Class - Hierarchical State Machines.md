@@ -1,4 +1,5 @@
- 
+If I ever want to check out the source code completely its a couple dollars [here](https://uppon-hill.itch.io/indietales-state-machine)
+
 Here is the entire PlayerMovement state manager from the last video
 - A lot of this stuff we want to use for NPC's so we want to make it more modular
 - There is a lot of state management happening here (this is supposed to be a PlayerMovement script brah) , and it should be in it's own script named 'StateMachine'
@@ -303,6 +304,21 @@ public class GroundSensor : MonoBehaviour {
 ```
 
 ```C#
+public class StateMachine {
+	public State state;
+	
+	public void Set(State newState, bool forceReset = false) {
+		if (state != newState || forceReset) {
+			state?.Exit();
+			state = newState;
+			state.Initialise();
+			state.Enter();
+		}
+	}
+}
+```
+
+```C#
 public abstract class Core : MonoBehaviour {
 	public Rigidbody2D body;
 	public Animator animator;
@@ -345,6 +361,7 @@ public abstract class State : MonoBehaviour {
 	}
 	
 	public void SetCore(Core _core) {
+		machine = new StateMachine();
 		core = _core;
 	}
 	
@@ -365,7 +382,8 @@ public abstract class State : MonoBehaviour {
 		state?.FixedDoBranch();
 	}
 	
-	public void Initialise() {
+	public void Initialise(StateMachine _parent) {
+		parent = _parent;
 		isComplete = false;
 		startTime = Time.time;
 	}
@@ -374,30 +392,157 @@ public abstract class State : MonoBehaviour {
 
 ```C#
 public class NPC : Core {
+	
+	public Patrol patrol;
+	public Collect collect;
+	
 	void Start() {
 		SetupInstances();
+		Set(patrol);
 	}
 	
 	void Update() {
 		if (state.isComplete) {
-		
+			if(state == collect){
+				Set(patrol);
+			}
 		}
-		state.Do();
+		
+		if (state == patrol) {
+			collect.checkForTarget();
+			if (collect.target != null) {
+				Set(collect);
+			}
+		}
+		state.DoBranch();
+	}
+	void FixedUpdate() {
+		state.FixedDoBranch();
 	}
 }
 ```
 
 ```C#
-public class StateMachine {
-	public State state;
+public class Patrol : State {
+	public State navigate;
+	public IdleState idle;
+	public Transform anchor1;
+	public Transform anchor2;
 	
-	public void Set(State newState, bool forceReset = false) {
-		if (state != newState || forceReset) {
-			state?.Exit();
-			state = newState;
-			state.Initialise();
-			state.Enter();
+	void GoToNextDestination() {
+		float randomSpot = Random.Range(anchor1.position.x, anchor2.position.x);
+		navigate.destination = new Vector2(randomSpot, core.transform.position.y);
+		Set(navigate, true);
+	}
+	
+	public override void Enter() {
+		GoToNextDestination();
+	}
+	
+	public override void Do() {
+		if (machine.state == navigate) {
+			if (navigate.isComplete) {
+				Set(idle, true);
+				body.velocity = new Vector2(0, body.velocity.y);
+			}
+		} else {
+			if (machine.state.time > 1) {
+				GoToNextDestination();
+			}
 		}
+	}
+}
+```
+
+```C#
+public class Navigate : State {
+	public Vector2 destination;
+	public float speed = 1;
+	public float threshold = 0.1f;
+	// Leaving this as a state because we don't know if they will walk/fly/crawl whatever
+	public State animation;
+	
+	public override void Enter() {
+		Set(animation, true);
+	}
+	
+	public override void Do() {
+		if (Vector2.Distance(core.transform.position, destination) < threshold) {
+			isComplete = true;
+		}
+		FaceDestination();
+	}
+	
+	public override void FixedDo() {
+		Vector2 direction = (destination - (Vector2)core.transform.position).normalized;
+		body.velocity = new Vector2(direction.x * speed, body.velocity.y);
+	}
+	
+	void FaceDestination() {
+		core.transform.localScale = new Vector3(Mathf.Sign(body.velocity.x), 1, 1);
+	}
+}
+```
+
+```C#
+public class Collect : State {
+	public List<Transform> souls;
+	public Transform target;
+	public Navigate navigate;
+	public IdleState idle;
+	public float collectRadius;
+	public float vision = 1;
+	
+	public override void Enter() {
+		navigate.destination = target.position
+		Set(navigate, true);
+	}
+	
+	public override void Do() {
+		if (state == navigate) {
+			if (CloseEnough(target.position)) {
+				Set(idle, true);
+				body.velocity = new Vector2(0, body.velocity.y);
+				target.gameObject.SetActive(false);
+			} else if (!InVision(target.position)) {
+				Set(idle, true);
+				body.velocity = new Vector2(0, body.velocity.y);
+			} else {
+				navigate.destination = target.position;
+				Set(navigate, true);
+			}
+		} else { // if we are idling
+			if (state.time > 1) {
+				isComplete = true;
+			}
+		}
+		
+		if (target == null) {
+			isComplete = true;
+			return;
+		}
+	}
+	
+	public override void Exit() {
+	
+	}
+	
+	public bool CloseEnough(Vector2 targetPos) {
+		return Vector2.Distance(core.transform.position, targetPos) < collectRadius;
+	}
+	
+	public bool Invision(Vector2 targetPos) {
+		return Vector2.Distance(core.transform.position, targetPos) < vision;
+	}
+	
+	public Transform CheckForTarget() {
+		foreach (Transform soul in souls) {
+			if (InVision(soul.position) && soul.gameObject.aciveSelf) {
+				target = soul;
+				return;
+			}
+		}
+		return null;
 	}
 }
 ```
