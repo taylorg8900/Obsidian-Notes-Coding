@@ -1,5 +1,9 @@
 [An introduction to finite state machines and the state pattern for game development](https://www.youtube.com/watch?v=-ZP2Xm-mY4E)
 
+An [article](https://gameprogrammingpatterns.com/state.html) that was linked in the video above that also talks about state machines
+
+[this video](https://www.youtube.com/watch?v=oqFbZoA2lnU) by the same guy is way better and makes pretty much all of this not as useful lol
+
 Comes from the State Pattern
 
 Benefits of State Pattern
