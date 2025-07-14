@@ -1,3 +1,5 @@
+[link](https://www.youtube.com/watch?v=Z0fmGAQSQG8&t=1428s)
+
 If I ever want to check out the source code completely its a couple dollars [here](https://uppon-hill.itch.io/indietales-state-machine)
 
 Here is the entire PlayerMovement state manager from the last video
@@ -285,7 +287,7 @@ I am going to leave these here, since I want to understand the differences betwe
 
 # Creating the NPC
 
-
+![[2025.05.15 hierarchical state machine diagram.PNG]]
 
 ```C#
 public class GroundSensor : MonoBehaviour {
@@ -351,7 +353,7 @@ public abstract class State : MonoBehaviour {
 	protected Animator animator => core.animator;
 	
 	
-	public StateMachine machine;
+	public StateMachine machine; // So that states can have their own statemachines and call states
 	public State parent; // keeping a reference to our parent state lets us traverse up the tree
 	public State state => machine.state; //just lets us call it a little more quickly
 	
@@ -401,6 +403,7 @@ public class NPC : Core {
 		Set(patrol);
 	}
 	
+	// Same as physics_process in godot, called each frame
 	void Update() {
 		if (state.isComplete) {
 			if(state == collect){
