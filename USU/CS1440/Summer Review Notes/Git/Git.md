@@ -1,4 +1,4 @@
-[[USU/CS1440/Summer Review Notes/February Review/2025.02.21 - Intermediate Git|2025.02.21 - Intermediate Git]]
+[[USU/CS1440/Summer Review Notes/(2) February Review/2025.02.21 - Intermediate Git|2025.02.21 - Intermediate Git]]
 
 [[2025.03.19 - Advanced Git Introduction]]
 # Git Basics
