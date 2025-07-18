@@ -1,0 +1,61 @@
+[[USU/CS1440/Summer Review Notes/February Review/2025.02.21 - Intermediate Git|2025.02.21 - Intermediate Git]]
+
+[[2025.03.19 - Advanced Git Introduction]]
+# Git Basics
+git commands
+- `git help` or `git help [command]`
+	- Opens a browser with documentation 
+- `git status`
+	- Tells you if you are in a repository, and state of the repository
+		- Which branch you are on
+		- How up to date you are (for example if you use `git fetch` and your repository is now 20 commits behind)
+		- If files are untracked, in the staging area, etc
+- `git clone`
+	- How you can download other repositories
+- `git add`
+	- Adds files to the staging area
+	- `git add .` adds all files, including untracked ones
+	- `git add -u` only adds tracked files
+- `git commit`
+	- `git commit -a` automatically stages modified and deleted tracked files and commits them
+	- `git commit -m` adds a message to the commit *without* having to open a text editor
+- `git remote`
+	- `git remote` shows a list of existing remotes
+	- `git remote add origin [https://...]` to link a local repo with github/gitlab
+	- `git remote -v` to show remotes
+	- `git remote rename [old] [new]` to rename a remote
+- `git push`
+	- `git push -u origin [branch name]` to add tracking reference
+		- `origin` should be set to the remote already
+- `git restore`
+	- `git restore README.md` will throw away changes to `README.md` since the last commit
+	- `git restore .` will throw away changes in the current directory
+	- `git restore :/` will throw away changes for the _entire_ repository
+	- `git restore --staged FILENAME ...` takes `FILENAME` out of the staging area
+- `git log`
+	- `git log --stat` displays a brief summary of affected files and changes
+	- `git log --patch` displays a diff describing that commit
+	- `git log OBJECT` shows `git log`, but from whichever `OBJECT` you pass in
+	- `git log :/text` finds the youngest commit that has `text` inside of it's commit message
+- `git stash` 
+	- Stash the changes in the working tree, and restore it to the `HEAD` state.
+	- You can make as many of these as you want, and they are kept in a stack in the order you make them
+	- `git stash list` lists the stack of stashed changes
+	- `git stash show` displays the names of files changed and number of lines changed by the top-most stash in the stack
+	- `git stash pop` apply the changes in the stashes top most entry to the working tree and discard the stash object
+	- `git stash apply` applies the changes in the stashes top most entry, but does not discard the stash object
+	- `git stash drop` discards the most recent stash entry
+- `git tag` 
+	- `git tag` lists existing tags
+	- `git tag TAGNAME` gives `TAGNAME` to the current commit (which is `HEAD`)
+		- `TAGNAME` can only refer to one commit, but a commit can have multiple tags
+	- `git tag TAGNAME OBJECT` applies `TAGNAME` to whichever commit is identified by `OBJECT`
+	- `git tag -d TAGNAME` removes a tag from a commit
+	- `git push REMOTE TAGNAME` is required for pushing tags to a remote repository
+	- `git push REMOTE --tags` pushes all defined tags to `REMOTE`
+	- `git push --delete REMOTE TAGNAME` removes  `TAGNAME` from the `REMOTE` repository
+- `git diff`
+	- `git diff -- FILE ...` displays changes in that file (or files)
+	- `git diff --cached` or `git diff --staged` for files in staging area
+	- `git diff OBJECT` shows changes between `OBJECT` and `HEAD` (what you need to turn `OBJECT` into `HEAD`)
+	- `git diff OBJECT -- FILE ...` shows changes needed for a specific file to turn into how it is in `HEAD`
