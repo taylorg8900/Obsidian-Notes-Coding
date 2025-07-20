@@ -1,5 +1,20 @@
 # Requirements Analysis
 
+Admin Interface
+- Student Management
+	- Yearly organization, can view past records of site and keep student information across school terms
+	- Attendance 
+	- Ability to view each student's interface features (inventory, skills, completed quests etc)
+	- Ability to modify student's inventories, either on a personal scale or a global scale for the entire class
+- Notes
+	- Daily outline
+		- This could be where he puts in things for the daily tasks, or has notes on what to do that day as a refresher when he starts class to look at
+	- Course schedule
+- Creation
+	- Quests
+	- Daily tasks
+	- Media
+
 Player/Student Interface
 - Inventory
 	- Inventory with equip slots
@@ -20,7 +35,7 @@ Player/Student Interface
 		- Simple questions that talk about things we learned in previous class (multiple choice, true false)
 		- If they click wrong answer they have to start over daily task
 - User Manual for game
-- Map 
+- Map
 	- So students can have context on where to go to continue quests, since things will be in real world
 - Character create like in Runescape or any other RPG/MMORPG
 - Leaderboard where they can see other students
