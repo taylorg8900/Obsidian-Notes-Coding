@@ -28,8 +28,12 @@ Very simple example
 ```html
 <!DOCTYPE html>
 <html lang="en">
+	<!-- This is a comment in HTML. -->
 	<head>
 		<title>Hello!</title>
+		<style>
+		/* This is a comment in CSS. */
+		</style>
 	</head>
 	<body>
 		Hello, world!
@@ -131,6 +135,9 @@ Elements
 - **Divisions**
 	- `<div>` 
 	- How we create sections which contain certain things
+- **Buttons**
+	- `<button>`
+	- `<button>Click Me</button>`
 
 # CSS
 ---
@@ -182,6 +189,11 @@ List of stuff
 	- `div {border: 3px solid black; }`
 	- `table {border-collapse: collapse; }`
 		- This will remove the white space in between table elements where there is a border
+- **Flex**
+	- `display: flex;`
+	- `flex-wrap: wrap;`
+
+# Selectors
 
 **Multiple Element Selector**
 - You can have a style apply to multiple HTML elements by having them together
@@ -189,11 +201,13 @@ List of stuff
 
 **Element IDs**
 - Lets us reference it to apply a style
-- `<h1 id="foo">Heading 1</h1>` and then `<style> #foo { color: blue; } </style>`
+	1. `<h1 id="foo">Heading 1</h1>` 
+	2. `<style> #foo { color: blue; } </style>`
 
 **Classes**
-- `<h1 class="baz">Heading1</h1>` and then `<style> .baz { color: blue; } </style>`
 - Lets us assign this class to any specific HTML elements we want, avoids duplicated code and inline code
+	1. `<h1 class="baz">Heading1</h1>` 
+	2. `<style> .baz { color: blue; } </style>`
 
 # Styling Priority
 A problem we face is that we can assign a style to an HTML element in many different ways. What if we have a specific style apply to all `h1` elements, but then we grab a specific one and assign a class to it? How does the language know which style to give to it?
@@ -208,7 +222,169 @@ Here are some of the ways you can be really specific about CSS styling
 	- `a, b`
 - Descendant Selector
 	- `a b`
+	- Used to select *all* `b` elements which are 'descendants' of `a`, whether or not they are immediate
 - Child Selector
 	- `a > b`
 - Adjacent Sibling Selector
 	- `a + b`
+- Attribute Selector
+	- `[a=b]`
+		- `a[href="https://facebook.com"] { color: red; }`
+			- Anchor elements with this attribute should be colored red
+- Pseudoclass Selector
+	- `a:b`
+		- `button:hover { background-color: orange; }`
+			- When you hover over a button, it turns orange
+- Pseudoelement Selector
+	- `a::b`
+
+# Responsive Design
+
+Add this line to the `head` section of our page to make the viewport just the width of the device, makes it look better on mobile
+- `<meta name="viewport" content="width=device-width, intial-scale=1.0">`
+
+## Media Queries
+Controlling how our page is going to look depending on how we render that page or the size of the screen that we are rendering on
+- Can control any CSS property with these
+```html
+<!-- This turns the background color to red if the width of page is more than 600 pixels, and blue if it is less than 599 pixels -->
+<head>
+	<style>
+		@media (min-width: 600px) {
+			body {
+				background-color: red;	
+			}
+		}
+		@media (max-width: 599px) {
+			body {
+				background-color: blue;
+			}
+		}
+	</style>
+</head>
+```
+
+## Flexbox
+This lets elements wrap around the screen dynamically, ensuring that any elements look good on different sized screens
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Hello!</title>
+		<style>
+			#container {
+				display: flex;
+				flex-wrap: wrap;
+			}
+			
+			#container > div {
+				background-color: springgreen;
+				font-size: 20px;
+				margin: 20px;
+				padding: 20px;
+				width: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div>1. This is sample text.</div>
+			<div>2. This is sample text.</div>
+			<div>3. This is sample text.</div>
+			<div>4. This is sample text.</div>
+			<div>5. This is sample text.</div>
+		</div>
+	</body>
+</html>
+```
+
+## Grid
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Hello!</title>
+		<style>
+			#grid {
+				background-color: green;
+				display: grid;
+				padding: 20px;
+				/* How much space goes between the columns and rows in our grid. */
+				grid-column-gap: 20px;
+				grid-row-gap: 10px;
+				/* Specifies how many columns there will be, and how wide they are. 'auto' lets it decide automatically. */
+				grid-template-columns: 200px 200px auto;
+			}
+			
+			.grid-item {
+				background-color: white;
+				font-size: 20px;
+				padding: 20px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="grid">
+			<div class-"grid-item">1</div>
+			<div class-"grid-item">2</div>
+			<div class-"grid-item">3</div>
+			<div class-"grid-item">4</div>
+			<div class-"grid-item">5</div>
+	</body>
+</html>
+```
+
+# Bootstrap
+---
+A popular library full of CSS styling, so that we don't need to create our own.
+- [getboostrap.com](https://getbootstrap.com)
+- [Bootstrap's Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction)
+
+Bootstrap's Column Model
+- A way to ensure that pages built with it are mobile responsive. Each page is divided into 12 columns, and we can decide how to use that space depending on what kind of screen the content is displayed on
+- [Column Docs](https://getbootstrap.com/docs/5.3/layout/columns/#how-they-work)
+- `<div class="col-3"> A section that is 3 units long, out of a maximum of 12 units. </div>`
+	- Contained within a `<div class="row"></div>`
+- `<div class="col-lg-3 col-sm-6">A section that is 3 units on large screens, and 6 units on small screens.</div>`
+
+# SASS
+---
+Basically an extension to CSS
+- Filename extension for this would be something like `variables.scss`, instead of the usual `variables.css`
+
+Features of SASS
+- Variables
+- Nesting CSS elements instead of using native CSS selectors
+- Inheritance
+
+CSS doesn't support variables, but SASS does
+```scss
+// This is a comment in scss
+
+// All variables begin with a '$'
+// This creates a variable named color, that is equal to 'red'
+$color: red;
+
+ul {
+	font-size:14px;
+	color: $color;
+}
+
+ol {
+	font-size: 18px;
+	color: $color;
+}
+```
+
+We need to convert scss into css so that web browsers can understand it. Attempting to link the above code snippet would not actually work the same as linking a css file.
+
+How to compile scss into css
+- Install a program named SASS onto your computer
+- **Manually**
+	- In the terminal, run `sass variables.scss:variables.css`
+		- `sass [File to be compiled]:[File to be generated]`
+- **Automatically**
+	- In the terminal, run `sass --watch variables.scss:variables.css`
+
+SASS also allows nesting of CSS elements, rather than using very specific selectors
