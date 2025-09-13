@@ -3,7 +3,7 @@
 - [ ] Create documentation on the website
 	- Required functionality of the site
 	- Layout of the site
-- [ ] 
+- [ ] See about extensions for solving these problems
 
 ## Version Control (chatgpt)
 - **HostingWF.com**: Exports your Webflow project to GitHub upon each publish, enabling file diffs and version tracking.[hostingwf.com](https://hostingwf.com/p/webflow-git-webflow-version-control/?utm_source=chatgpt.com)
