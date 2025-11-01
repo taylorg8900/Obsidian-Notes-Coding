@@ -1,3 +1,11 @@
 {
-  "theme": "obsidian"
+  "theme": "obsidian",
+  "monospaceFontFamily": "",
+  "interfaceFontFamily": "",
+  "textFontFamily": "",
+  "cssTheme": "",
+  "baseFontSize": 15,
+  "enabledCssSnippets": [
+    "code_snippet"
+  ]
 }

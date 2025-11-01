@@ -1,0 +1,5 @@
+.markdown-source-view.cm-s-obsidian.mod-cm6 .HyperMD-codeblock,
+.markdown-source-view .cm-inline-code,
+.markdown-preview-view code {
+    font-size: var(--font-size-code);
+}

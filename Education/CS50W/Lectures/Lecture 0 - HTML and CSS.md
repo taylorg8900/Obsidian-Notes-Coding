@@ -1,3 +1,7 @@
+Links
+- [Lecture notes](https://cs50.harvard.edu/web/notes/0)
+- [W3Schools website](https://www.w3schools.com/html)
+
 Topics
 - HTML and CSS
 	- HTML describes the structure of a webpage
@@ -60,7 +64,7 @@ Breakdown of code snippet
 - A way to describe HTML code by creating a tree like model to show how elements are related to each other
 - Parent elements and child elements
 
-# Common HTML elements
+## Common HTML elements
 
 Elements 
 - **Headings**
@@ -69,6 +73,9 @@ Elements
 	- `<h2>` - `<h6>`
 		- Is smaller than `<h1>`
 		- Continues this pattern down to `<h6>`
+- Text formatting
+	- `<strong>bold</strong>` creates bold text
+	- `<i>italicized</i>` creates italicized words
 - **Lists**
 	- **Ordered Lists**
 		- Numbers to denote an order, browser automatically creates the numbers for items within the body of `<ol>`
@@ -98,21 +105,23 @@ Elements
 - **Tables**
 	- **Table Tag**
 		- `<table>`
+		- First HTML tag used to create a table, everything else gets nested inside of this
 	- **Table Header**
 		- `<thead>` 
 		- First row of the table
-		- Put `<th>` tags inside here, and make sure to use `<tr>` tags to accomplish this
+		- Use `<th>` tags inside here, to put in text that goes into each cell of the header
 	- **Table Headings**
 		- `<th>`
-		- Each column of the table is described by this
+		- Text that appears in the cells of the table header
 	- **Table Body**
 		- `<tbody>`
 		- The main part of our table
-		- Put `<tr>` tags inside here
+		- Put `<tr>` tags inside here, to create each row
 	- **Table Row**
 		- `<tr>`
 	- **Table Data**
 		- `<td>`
+		- Any text that belongs in each cell of the table (just not the header cells)
 - **Forms**
 	- **Form Tag**
 		- `<form>`
@@ -138,6 +147,9 @@ Elements
 - **Buttons**
 	- `<button>`
 	- `<button>Click Me</button>`
+- Line break
+	- `<br>` creates a line break, which just moves the next element or text to a new line
+	- 'Empty element', meaning that it doesn't need a closing tag - '`<br>`' is just used on its own
 
 # CSS
 ---
@@ -166,9 +178,10 @@ Moving style related code into `<head>`
 </head>
 ```
 
-How do we make it so that a specific style is available to multiple pages at once?
-- By moving it to another file, specifically a `.css` file
-- Link the `.css` file to a `.html` page inside the `<head>` element with a `<link rel="stylesheet" href"styles.css">`, where the `href""` contains the name of a file with our styling
+
+### Linking to an external CSS file
+`<link rel="stylesheet" href="styles.css">`
+- Include this within `<head>`, on its own without a style tag anywhere 
 
 # Common CSS styles
 
@@ -193,7 +206,7 @@ List of stuff
 	- `display: flex;`
 	- `flex-wrap: wrap;`
 
-# Selectors
+# CSS Selectors
 
 **Multiple Element Selector**
 - You can have a style apply to multiple HTML elements by having them together
@@ -244,8 +257,9 @@ Add this line to the `head` section of our page to make the viewport just the wi
 - `<meta name="viewport" content="width=device-width, intial-scale=1.0">`
 
 ## Media Queries
-Controlling how our page is going to look depending on how we render that page or the size of the screen that we are rendering on
-- Can control any CSS property with these
+- Ways of changing the style of a page based on how the page is being viewed
+- You signal a media query by typing `@media`, followed by the type of query in parentheses
+
 ```html
 <!-- This turns the background color to red if the width of page is more than 600 pixels, and blue if it is less than 599 pixels -->
 <head>
