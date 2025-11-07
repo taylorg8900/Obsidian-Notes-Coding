@@ -38,6 +38,7 @@ Django HTML Syntax
 - Variables `{{ [variable name] }}`
 - Conditionals `{% [if, elif, else, endif] %}`
 - Loops `{% for item in [list object] %}` `{% endfor %}` 
+	- `{% empty %}` if the sequence is empty for some reason, use similar to if-elif
 
 Creating our HTML file
 - Put it inside of `[app name]/templates/[app name]/index.html`

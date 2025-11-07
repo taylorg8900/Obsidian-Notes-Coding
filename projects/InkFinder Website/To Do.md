@@ -12,3 +12,7 @@
 
 ## Documentation
 It looks like the simplest thing to do is just to create a github repo specifically for documentation :/
+
+Meeting
+- Discuss taking notes and only briefly doing projects for cs50w, might be better use of time to just get exposed to different ideas and development tools
+- Second monitor using the old 1080p?

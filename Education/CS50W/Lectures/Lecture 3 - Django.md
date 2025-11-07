@@ -1,4 +1,4 @@
-***Django*** is a Python web framework that lets us dynamically generate HTML and CSS to create web applications. A Django project consists of multiple Django applications, each one providing a specific service.
+***Django*** is a Python web framework that lets us dynamically generate HTML and CSS to create web applications. A Django project consists of multiple Django applications, each one providing a specific service. It is powerful because of its ability to be used to store and retrieve information from databases in particular.
 
 ***HTTP*** stands for Hypertext Transfer Protocol, which is how information is sent between clients and servers
 - Consists of requests, and responses in the form of status codes. An example is 200 meaning OK, 301 means moved permanently, 404 means not found, 500 means internal server error
@@ -82,7 +82,7 @@ def greet(request, name):
 # -----
 # Inside hello/urls.py
 urlpatterns = [
-	path("", views,index, name="index"),
+	path("", views.index, name="index"),
 	path("<str:name>", views.greet, name="greet")
 ]
 # -----
@@ -193,3 +193,84 @@ We want to avoid the situation where multiple apps all have the same 'add' url, 
 1. Inside of our app's `urls.py` file, add the line `app_name = "[app name]"`
 	- I'd have to read the documentation to know how this actually does anything, but just trust that it works I guess
 2. Make the line in our html file look like `<a href="{% url '[app name]:add' %}">Link</a>` instead
+
+### Using Forms to submit data
+`<form action="{% url 'tasks:add' %}" method="post">`
+- We are used to seeing `method="get"`, which means "I would like to get a particular page"
+- `method="post"` is used anytime we are submitting data that can change some kind of state in a page, lets us send data
+
+![[2025.11.5 csrf error.PNG]]
+
+CSRF stands for Cross Site Request Forgery, and it's a security vulnerability if it's not designed properly. We can implement some kind of CSRF token into our forms and check to make sure it's coming from the user who is actually on our page.
+- Django Middleware is the add-on that solves this, and you can see a bunch of it inside of the `settings.py` file
+
+Here is how to fix this problem:
+```html
+{% block body %}
+	<form action="{% url 'tasks:add' %}" method="post">
+		{% csrf_token %} <!-- This is the important part, add this in here-->
+		<input type="text" name="task">
+		<input type="submit">
+	</form>
+{% endblock %}
+```
+This will generate a `input type="hidden"` tag with a huge token attached to it when anyone visits the page
+
+## Creating forms with Django - Alternative method
+
+```python
+# Inside of tasks/views.py
+
+# Django's library for creating forms inside of python and not html, much easier to work with
+from django import forms
+# Functions we use to redirect the user
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
+# Library we already had in here
+from django.shortcuts import render
+
+tasks = ["foo", "bar", "baz"]
+
+# We inherit from forms.Form so that we can use this class to generate forms in our html instead of making them manually
+class NewTaskForm(forms.Form):
+	task = forms.CharField(label="New Task")
+	# You can add additional fields, for example an IntegerField
+	priority = forms.IntegerField(label="Priority", min_value=1, max_value=5)
+
+# We are going to move the tasks list in here, so that we can have sessions for each user
+def index(request):
+	if "tasks" not in request.session:
+		request.session["tasks"] = []
+	
+	return render(request, "tasks/index.html", {
+		"tasks": request.session["tasks"]
+	})
+
+# We can add context with the third argument here to be passed to our html, and pass in a NewTaskForm. Django will automatically generate a form, so we can have '{{ form }}' in our html code instead of doing it all manually
+def add(request):
+	if request.method == "POST":
+		# request.POST contains all of the data the user submits
+		form = NewTaskForm(request.POST)
+		if form.is_valid():
+			task = form.cleaned_data["task"]
+			request.session["tasks"] += [task]
+			# We are redirecting a user with this 
+			# reverse is a function built in to Django that will figure out the url to send the user to
+			return HttpResponseRedirect(reverse("tasks:index"))
+		else:
+			# Send back the existing form data, instead of generating a new form. This is so the user can see where what they typed in went wrong
+			return render(request, "tasks/add.html", {
+				"form": form
+			})
+	return render(request, "tasks/add.html", {
+		"form": NewTaskForm()
+	})
+```
+
+## Tables
+
+Django stores information inside of 'tables', including sessions
+
+`python manage.py migrate` will allow us to create default tables that we need, but explanations for how this works comes later
+

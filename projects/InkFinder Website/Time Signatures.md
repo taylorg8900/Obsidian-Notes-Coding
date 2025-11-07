@@ -7,3 +7,5 @@
 | 2025.10.10 | 123                  | Project 0                                                                                        |
 | 2025.10.29 | 120                  | project 0                                                                                        |
 | 2025.10.30 | 28                   | lecture 1 - git                                                                                  |
+| 2025.10.31 | 244                  | lecture 2 - Python, and lecture 3 - Django                                                       |
+| 2025.11.5  | 90                   | Lecture 3 - Django                                                                               |
